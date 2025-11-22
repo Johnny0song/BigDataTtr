@@ -1,0 +1,10 @@
+hello spark
+hello flink
+hello world
+hello how are you
+hello can you hear me
+spark and flink are great
+world of big data
+data processing is fun
+big data analytics is powerful
+hello big data enthusiasts

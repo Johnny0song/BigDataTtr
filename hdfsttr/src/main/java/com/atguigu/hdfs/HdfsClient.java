@@ -26,9 +26,9 @@ public class HdfsClient {
         conf.set("dfs.namenode.rpc-address.mycluster.nn2", "hadoop102:8020");
         conf.set("dfs.namenode.rpc-address.mycluster.nn3", "hadoop103:8020");
         conf.set("dfs.client.failover.proxy.provider.mycluster",
-                "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider");*/
+        "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider");*/
 
-        FileSystem fs = FileSystem.get(new URI("hdfs://mycluster"), conf, "atguigu");
+        FileSystem fs = FileSystem.get(new URI("hdfs://hadoop101:8020"), conf, "atguigu");
 
         fs.mkdirs(new Path("/aaaa/bbbb"));
 
@@ -53,10 +53,12 @@ public class HdfsClient {
     public void testCopyToLocalFile() throws URISyntaxException, IOException, InterruptedException {
         Configuration conf = new Configuration();
 
-        FileSystem fs = FileSystem.get(new URI("hdfs://mycluster"), conf, "atguigu");
+        FileSystem fs = FileSystem.get(new URI("hdfs://hadoop101:8020"), conf, "atguigu");
 
-        fs.copyToLocalFile(new Path("/尚硅谷大数据技术之高频面试题9.1.3.docx"),
-                new Path("/Users/richard/Documents/learningdoc/面试题/尚硅谷大数据技术之高频面试题9.1.3_copy.docx"));
+        fs.copyToLocalFile(new Path("/input/word.txt"),
+                new Path("./data/wrod.txt"));
+
+
 
         fs.close();
     }

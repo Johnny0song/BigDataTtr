@@ -1,0 +1,49 @@
+package com.atguigu.spark.sparkcore.rdd.transform;
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.FlatMapFunction;
+import org.apache.spark.api.java.function.Function2;
+import org.apache.spark.api.java.function.PairFunction;
+import scala.Tuple2;
+
+import java.util.Arrays;
+import java.util.Iterator;
+
+public class Test10_PairReduceByKeyWc {
+    public static void main(String[] args) {
+        SparkConf sparkConf = new SparkConf();
+        sparkConf.setMaster("yarn").setAppName("spark");
+
+        JavaSparkContext jsc = new JavaSparkContext(sparkConf);
+
+        JavaPairRDD<String, Integer> stringIntegerJavaPairRDD = jsc.textFile(args[0], 2)
+                .flatMap(new FlatMapFunction<String, String>() {
+                    @Override
+                    public Iterator<String> call(String s) throws Exception {
+
+                        return Arrays.asList(s.split(" ")).iterator();
+                    }
+                }).mapToPair(
+                        new PairFunction<String, String, Integer>() {
+                            @Override
+                            public Tuple2<String, Integer> call(String s) throws Exception {
+                                return Tuple2.apply(s, 1);
+                            }
+                        }
+                ).reduceByKey(
+                        new Function2<Integer, Integer, Integer>() {
+                            @Override
+                            public Integer call(Integer v1, Integer v2) throws Exception {
+                                return v1 + v2;
+                            }
+                        }, 2
+                );
+
+        stringIntegerJavaPairRDD.saveAsTextFile(args[1]);
+
+
+        jsc.stop();
+    }
+}

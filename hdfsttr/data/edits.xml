@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EDITS>
+  <EDITS_VERSION>-67</EDITS_VERSION>
+  <RECORD>
+    <OPCODE>OP_START_LOG_SEGMENT</OPCODE>
+    <DATA>
+      <TXID>2338</TXID>
+    </DATA>
+  </RECORD>
+  <RECORD>
+    <OPCODE>OP_TIMES</OPCODE>
+    <DATA>
+      <TXID>2339</TXID>
+      <LENGTH>0</LENGTH>
+      <PATH>/input/word.txt</PATH>
+      <MTIME>-1</MTIME>
+      <ATIME>1763083895919</ATIME>
+    </DATA>
+  </RECORD>
+</EDITS>

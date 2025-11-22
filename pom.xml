@@ -11,6 +11,8 @@
     <module>kafkattr</module>
       <module>hdfsttr</module>
       <module>mapreducettr</module>
+      <module>flinkttr</module>
+      <module>sparkttr</module>
   </modules>
 
     <properties>
@@ -22,6 +24,8 @@
         <hadoop.version>3.4.2</hadoop.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <jackson.version>3.0.1</jackson.version>
+        <lombok.version>1.18.38</lombok.version>
   </properties>
 
 
@@ -35,6 +39,22 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-log4j12</artifactId>
         <version>${slf4j.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/tools.jackson.core/jackson-databind -->
+    <dependency>
+        <groupId>tools.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+        <scope>provided</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
     </dependency>
 </dependencies>
 </project>
